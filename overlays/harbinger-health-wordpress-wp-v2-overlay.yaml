@@ -1,0 +1,80 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Harbinger Health WordPress REST API (wp/v2)
+  version: 1.0.0
+extends: openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+x-apievangelist-generated: '2026-08-04'
+x-apievangelist-method: generated
+x-apievangelist-note: >-
+  These are API Evangelist annotations layered over the derived OpenAPI. The base document is
+  itself derived from Harbinger Health's live WordPress route-discovery document and is never
+  mutated in place. Nothing here asserts anything Harbinger Health published.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: harbinger-health
+      x-apievangelist-artifact-index: llms/harbinger-health-llms.txt
+      x-apievangelist-conventions: conventions/harbinger-health-conventions.yml
+      x-apievangelist-errors: errors/harbinger-health-problem-types.yml
+      x-apievangelist-data-model: data-model/harbinger-health-data-model.yml
+      x-apievangelist-examples: examples/_index.yml
+      x-apievangelist-authentication: authentication/harbinger-health-authentication.yml
+      x-apievangelist-agentic-access: agentic-access/harbinger-health-agentic-access.yml
+      x-apievangelist-surface-class: cms-content
+      x-apievangelist-not-a: >-
+        clinical, laboratory, diagnostic, genomic or patient-data API. No Harbinger HX or RESOLVE
+        data is reachable through any operation in this document.
+  - target: $.info
+    update:
+      x-apievangelist-idempotency: >-
+        NOT SUPPORTED. No Idempotency-Key header or replay window exists on this API. Agents must
+        treat every POST as non-idempotent and must not blind-retry writes.
+      x-apievangelist-rate-limits: >-
+        NOT ADVERTISED. No RateLimit-* or Retry-After header is returned. robots.txt requests a
+        10 second crawl delay; treat that as the polite ceiling for automated traversal.
+      x-apievangelist-request-tracing: >-
+        NOT SUPPORTED. No request-id or correlation-id header is returned, so failures cannot be
+        correlated with the provider.
+  - target: $.servers
+    update:
+      - url: https://harbinger-health.com/wp-json
+        description: >-
+          Harbinger Health corporate site, WP Engine origin fronted by Cloudflare. TLS 1.3, no
+          HSTS. Anonymous reads permitted in view and embed context.
+  - target: $.components.securitySchemes
+    update:
+      mcpOAuth:
+        type: oauth2
+        description: >-
+          Not applicable to the wp/v2 operations in this document, recorded here so the full auth
+          posture of the host travels with the spec. Guards the Model Context Protocol server at
+          /wp-json/mcp/mcp-oauth-server. See scopes/harbinger-health-scopes.yml.
+        flows:
+          authorizationCode:
+            authorizationUrl: https://harbinger-health.com/oauth/authorize
+            tokenUrl: https://harbinger-health.com/oauth/token
+            refreshUrl: https://harbinger-health.com/oauth/token
+            scopes:
+              mcp: The single scope the authorization server advertises.
+  - target: $.paths['/wp/v2/posts'].get
+    update:
+      x-apievangelist-note: >-
+        The company news, press-release and scientific-update feed. 51 items and 26 pages at
+        per_page=2 on 2026-08-04. This is the operation to use for tracking Harbinger Health
+        announcements programmatically.
+      x-apievangelist-example: examples/harbinger-health-posts-response.json
+  - target: $.paths['/wp/v2/events'].get
+    update:
+      x-apievangelist-note: >-
+        The only site-specific custom post type Harbinger Health registered. Backs conference
+        presence pages such as the ASCO 2026 Annual Meeting entry.
+  - target: $.paths['/wp/v2/search'].get
+    update:
+      x-apievangelist-note: Cross-type site search; the cheapest single call for grounding an agent on this company.
+      x-apievangelist-example: examples/harbinger-health-search-response.json
+  - target: $.paths['/wp/v2/types'].get
+    update:
+      x-apievangelist-note: >-
+        Source of truth for the content entity graph; drives
+        data-model/harbinger-health-data-model.yml.
+      x-apievangelist-example: examples/harbinger-health-types-response.json

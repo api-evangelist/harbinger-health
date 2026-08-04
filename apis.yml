@@ -1,23 +1,202 @@
 aid: harbinger-health
 name: Harbinger Health
-description: 'Harbinger Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+x-enrichment:
+  date: '2026-08-04'
+  status: enriched
+  artifacts_added: 33
+  pass: local-v1
 url: https://raw.githubusercontent.com/api-evangelist/harbinger-health/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+description: >-
+  Harbinger Health is a Cambridge, Massachusetts biotechnology company founded out of Flagship
+  Pioneering's Flagship Labs in 2018 that is building blood-based early cancer detection on the
+  premise that the earliest phases of oncogenesis are marked by the reactivation of core
+  developmental programs. Its proprietary Harbinger HX platform pairs cell-free DNA methylation
+  assay chemistry tuned for low tumour fraction with machine learning operating under biologically
+  informed constraints, and supports cancer signal detection, tumour content estimation and
+  tissue-of-origin inference. RESOLVE, the company's clinical application of that platform, is
+  positioned to generate clarity in the uncertain window between suspicion of cancer and diagnosis,
+  across cancer types and clinical contexts, and is run out of a CLIA-certified and CAP-accredited
+  high-complexity laboratory. The company raised a 100 million dollar round to expand its
+  blood-based detection suite and is led by CEO Ajit Singh with Chief Innovation Officer Tony
+  Shuber, a co-founder of Exact Sciences. Harbinger Health's API posture is minimal and clinical
+  rather than commercial: there is no developer portal, no published documentation, no OpenAPI, no
+  SDKs, no pricing and no self-serve API access, and the developer., docs., api., portal., status.
+  and trust. subdomains do not resolve. What it does publish is unusual for a company with no
+  developer programme - the corporate site serves a live, anonymously readable WordPress REST API
+  (268 routes across 15 namespaces), an RFC 8414 OAuth 2.1 authorization-server metadata document,
+  an RFC 9728 protected-resource document, and a real Model Context Protocol server namespace
+  gated behind an mcp scope, alongside the WordPress Abilities API. That makes Harbinger Health
+  machine-discoverable at the agent layer while none of its clinical, laboratory or diagnostic
+  capability is exposed programmatically to third parties.
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: No published developer API; corporate-site content and MCP surfaces only
+  confidence: high
+  source:
+    - probe
+  generated: '2026-08-04'
+  method: probed
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+  - Health
+  - Healthcare
+  - Biotechnology
+  - Cancer Detection
+  - Diagnostics
+  - Genomics
+  - Artificial Intelligence
+  - Machine Learning
+  - Life Sciences
+  - Clinical Laboratory
+  - Precision Medicine
+  - United States
+  - Company
 created: '2026-08-04'
 modified: '2026-08-04'
-tags:
-- Company
-apis: []
+specificationVersion: '0.20'
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-- FN: APIs.json
-  email: info@apis.io
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+  - FN: APIs.json
+    email: info@apis.io
+apis:
+  - aid: harbinger-health:harbinger-health-wordpress-rest-api
+    name: Harbinger Health WordPress REST API
+    description: >-
+      The stock WordPress REST API served by Harbinger Health's corporate site at
+      https://harbinger-health.com/wp-json/. Confirmed live and anonymously readable on 2026-08-04
+      (HTTP 200, application/json, 256,594 bytes), the root discovery document self-describes 268
+      routes across 15 namespaces including wp/v2, wp-abilities/v1, mcp, yoast/v1, redirection/v1,
+      leadin/v1 (HubSpot) and wp-rocket/v1, and advertises WordPress application passwords as its
+      authentication scheme. A custom events post type is registered alongside posts, pages and
+      media. This is a content-management surface for the corporate website - it is NOT a clinical,
+      laboratory, diagnostic, genomic or patient-data API, no Harbinger HX or RESOLVE result is
+      reachable through it, and Harbinger Health does not document or support it as a developer
+      product. It is catalogued here because it is the only publicly callable, machine-describable
+      API found on any Harbinger Health host.
+    humanURL: https://developer.wordpress.org/rest-api/
+    baseURL: https://harbinger-health.com/wp-json
+    tags:
+      - CMS
+      - Content
+      - WordPress
+      - Website
+    properties:
+      - type: OpenAPI
+        url: openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+      - type: Overlay
+        url: overlays/harbinger-health-wordpress-wp-v2-overlay.yaml
+      - type: Examples
+        url: examples/_index.yml
+      - type: DataModel
+        url: data-model/harbinger-health-data-model.yml
+      - type: ErrorCatalog
+        url: errors/harbinger-health-problem-types.yml
+  - aid: harbinger-health:harbinger-health-mcp-server
+    name: Harbinger Health MCP Server
+    description: >-
+      A live Model Context Protocol server namespace published on Harbinger Health's own host at
+      https://harbinger-health.com/wp-json/mcp/, exposing two servers - mcp-oauth-server and
+      mcp-adapter-default-server - over POST/GET/DELETE. It is protected by a real OAuth 2.1
+      deployment: https://harbinger-health.com/.well-known/oauth-authorization-server returns RFC
+      8414 metadata (authorization code with PKCE S256, refresh tokens, public clients, client ID
+      metadata documents) and https://harbinger-health.com/.well-known/oauth-protected-resource
+      returns RFC 9728 metadata naming the MCP server as the protected resource with a single mcp
+      scope. An anonymous tools/list JSON-RPC call returns HTTP 401 mcp_unauthorized, so the tool
+      catalogue and its input schemas require an authenticated introspection; the tool set is
+      almost certainly drawn from the WordPress Abilities API registered at wp-abilities/v1, which
+      is likewise 401 to anonymous callers. This is a site-content agent surface, not a clinical
+      or diagnostic one.
+    humanURL: https://modelcontextprotocol.io/
+    baseURL: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+    tags:
+      - MCP
+      - Agents
+      - OAuth
+      - WordPress
+    properties:
+      - type: MCPServer
+        url: mcp/harbinger-health-mcp.yml
+      - type: ToolCrosswalk
+        url: mcp/harbinger-health-tool-crosswalk.yml
+      - type: OAuthScopes
+        url: scopes/harbinger-health-scopes.yml
 common:
-- type: Website
-  url: https://forgeglobal.com/harbinger-health_stock/
+  - type: Website
+    url: https://harbinger-health.com/
+  - type: About
+    url: https://harbinger-health.com/about/
+  - type: Blog
+    url: https://harbinger-health.com/news-insights/
+  - type: Support
+    url: https://harbinger-health.com/contact/
+  - type: TermsOfService
+    url: https://harbinger-health.com/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://harbinger-health.com/privacy-policy/
+  - type: Contact
+    url: https://harbinger-health.com/contact/
+  - type: Careers
+    url: https://harbinger-health.com/job/
+  - type: Partners
+    url: https://harbinger-health.com/partnerships/
+  - type: Product
+    url: https://harbinger-health.com/resolve/
+  - type: Product
+    url: https://harbinger-health.com/platform-technology/
+  - type: PressRoom
+    url: https://harbinger-health.com/news-insights/
+  - type: Sitemap
+    url: https://harbinger-health.com/sitemap_index.xml
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/harbinger-health
+  - type: Twitter
+    url: https://twitter.com/harbingerhlth
+  - type: YouTube
+    url: https://www.youtube.com/@HarbingerHealth
+  - type: Instagram
+    url: https://www.instagram.com/harbingerhealth/
+  - type: Facebook
+    url: https://www.facebook.com/p/Harbinger-Health-61555320668795/
+  - type: Authentication
+    url: authentication/harbinger-health-authentication.yml
+  - type: OAuthScopes
+    url: scopes/harbinger-health-scopes.yml
+  - type: WellKnown
+    url: well-known/harbinger-health-well-known.yml
+  - type: MCPServer
+    url: mcp/harbinger-health-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/harbinger-health-tool-crosswalk.yml
+  - type: LLMsTxt
+    url: llms/harbinger-health-llms.txt
+  - type: Conventions
+    url: conventions/harbinger-health-conventions.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/harbinger-health-lifecycle.yml
+  - type: Conformance
+    url: conformance/harbinger-health-conformance.yml
+  - type: Compliance
+    url: https://harbinger-health.com/resolve/
+  - type: DomainSecurity
+    url: security/harbinger-health-domain-security.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: Packages
+    url: packages/harbinger-health-packages.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: AgenticAccess
+    url: agentic-access/harbinger-health-agentic-access.yml
+  - type: Overlay
+    url: overlays/harbinger-health-wordpress-wp-v2-overlay.yaml
+  - type: Examples
+    url: examples/_index.yml

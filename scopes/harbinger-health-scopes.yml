@@ -1,0 +1,50 @@
+generated: '2026-08-04'
+method: probed
+source: https://harbinger-health.com/.well-known/oauth-authorization-server
+also_from: https://harbinger-health.com/.well-known/oauth-protected-resource
+docs: null
+summary: >-
+  Harbinger Health runs a real OAuth 2.1 authorization server on its own origin, published as RFC
+  8414 metadata, guarding the Model Context Protocol server registered on the site. It declares
+  exactly one scope. The scope list below is copied verbatim from the live metadata documents —
+  the provider publishes no scopes or permissions reference page, so nothing here is expanded,
+  grouped or inferred beyond the single published value.
+schemes:
+  - name: mcp-oauth
+    type: oauth2
+    source: https://harbinger-health.com/.well-known/oauth-authorization-server
+    issuer: https://harbinger-health.com
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://harbinger-health.com/oauth/authorize
+        tokenUrl: https://harbinger-health.com/oauth/token
+        revocationUrl: https://harbinger-health.com/oauth/revoke
+        pkce: [S256]
+        refresh_token: true
+        token_endpoint_auth_methods_supported: [none]
+        client_id_metadata_document_supported: true
+scopes:
+  - scope: mcp
+    description: >-
+      The only scope the authorization server advertises. Declared in scopes_supported on both the
+      RFC 8414 authorization-server metadata and the RFC 9728 protected-resource metadata, where it
+      guards https://harbinger-health.com/wp-json/mcp/mcp-oauth-server. No further description,
+      granularity or read/write split is published by the provider.
+    flows: [authorizationCode]
+    protects: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+    sources:
+      - https://harbinger-health.com/.well-known/oauth-authorization-server
+      - https://harbinger-health.com/.well-known/oauth-protected-resource
+gaps:
+  - No OpenID Connect discovery document is served (/.well-known/openid-configuration is 404), so
+    this is a bare OAuth 2.1 deployment with no identity layer advertised.
+  - Only one coarse scope exists; there is no read/write or per-resource separation, so a token
+    that can list tools can also, in principle, invoke any write-capable ability the server exposes.
+  - No dynamic client registration endpoint is advertised; registration is by client-ID metadata
+    document instead.
+  - The provider publishes no scopes reference page, no OAuth documentation and no developer portal.
+x-evidence:
+  fetched: '2026-08-04'
+  urls:
+    - {url: 'https://harbinger-health.com/.well-known/oauth-authorization-server', http_status: 200, content_type: application/json}
+    - {url: 'https://harbinger-health.com/.well-known/oauth-protected-resource', http_status: 200, content_type: application/json}

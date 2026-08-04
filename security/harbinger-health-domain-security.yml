@@ -1,0 +1,45 @@
+generated: '2026-08-04'
+method: probed
+source: live DNS/TLS/HTTP probes of the Harbinger Health host on 2026-08-04
+scope: >-
+  Only hosts Harbinger Health actually controls are recorded. The upstream documentation hosts
+  referenced from apis.yml humanURL fields (developer.wordpress.org, modelcontextprotocol.io) are
+  third-party and are deliberately excluded so their posture is not attributed to this provider.
+hosts:
+  - host: harbinger-health.com
+    https: true
+    tls_version: TLSv1.3
+    cert_expires: Sep 10 00:47:15 2026 GMT
+    hsts: null
+    hsts_max_age: null
+    note: >-
+      Fronted by Cloudflare (server: cloudflare). No Strict-Transport-Security header was returned
+      on any probed path, so HSTS is not asserted for this origin.
+domains:
+  - domain: harbinger-health.com
+    dnssec: true
+    caa: []
+    spf: true
+    dmarc: true
+    dmarc_policy: none
+subdomains_probed:
+  note: >-
+    None of the conventional developer, documentation, API, portal, status or trust subdomains
+    resolve for this domain.
+  nxdomain:
+    - developer.harbinger-health.com
+    - docs.harbinger-health.com
+    - api.harbinger-health.com
+    - portal.harbinger-health.com
+    - status.harbinger-health.com
+    - trust.harbinger-health.com
+findings:
+  strengths:
+    - TLS 1.3 negotiated on the only production host.
+    - DNSSEC is signed on harbinger-health.com.
+    - Both SPF and DMARC records are published.
+  gaps:
+    - No HSTS header, so the origin does not pin browsers or agents to HTTPS.
+    - No CAA record, so any public CA may issue for the domain.
+    - 'DMARC policy is p=none: reporting only, nothing is quarantined or rejected.'
+    - No /.well-known/security.txt (RFC 9116) is served.

@@ -1,0 +1,56 @@
+generated: '2026-08-04'
+method: searched
+source: >-
+  Live anonymous requests against https://harbinger-health.com/wp-json/ on 2026-08-04. Every file
+  below is a verbatim response body, unedited.
+api: openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+note: >-
+  The derived OpenAPI does not carry in-spec examples, because the WordPress route-discovery
+  document publishes no response schemas. These captured payloads are the real response shapes, and
+  are what an agent should be shown instead.
+examples:
+  - file: harbinger-health-posts-response.json
+    operationId: listPosts
+    request: 'GET /wp-json/wp/v2/posts?per_page=2&_fields=id,date,slug,link,title,excerpt,categories,tags'
+    status: 200
+    description: Two news/press articles with sparse fieldsets applied via _fields.
+  - file: harbinger-health-pages-response.json
+    operationId: listPages
+    request: 'GET /wp-json/wp/v2/pages?per_page=2&_fields=id,slug,link,title'
+    status: 200
+    description: Two marketing pages.
+  - file: harbinger-health-categories-response.json
+    operationId: listCategories
+    request: 'GET /wp-json/wp/v2/categories?per_page=10'
+    status: 200
+    description: Full category objects including _links HATEOAS relations.
+  - file: harbinger-health-search-response.json
+    operationId: listSearch
+    request: 'GET /wp-json/wp/v2/search?search=cancer&per_page=3'
+    status: 200
+    description: Cross-type site search results.
+  - file: harbinger-health-types-response.json
+    operationId: listTypes
+    request: GET /wp-json/wp/v2/types
+    status: 200
+    description: >-
+      Registered content types and their rest_base values, including the site-specific events
+      custom post type. This is the source for data-model/harbinger-health-data-model.yml.
+error_examples:
+  - file: harbinger-health-error-400.json
+    code: rest_invalid_param
+    request: 'GET /wp-json/wp/v2/posts?per_page=500'
+    status: 400
+  - file: harbinger-health-error-401.json
+    code: rest_forbidden
+    request: GET /wp-json/wp/v2/settings
+    status: 401
+  - file: harbinger-health-error-404.json
+    code: rest_post_invalid_id
+    request: GET /wp-json/wp/v2/posts/999999999
+    status: 404
+  - file: harbinger-health-error-no-route.json
+    code: rest_no_route
+    request: GET /wp-json/wp/v2/nope
+    status: 404
+catalog: errors/harbinger-health-problem-types.yml

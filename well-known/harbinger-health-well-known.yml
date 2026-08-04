@@ -1,0 +1,72 @@
+generated: '2026-08-04'
+method: searched
+source: Live probes of https://harbinger-health.com/.well-known/* on 2026-08-04
+host: https://harbinger-health.com
+summary: >-
+  Harbinger Health serves two real RFC-defined discovery documents from its own host, both of them
+  in service of the Model Context Protocol server registered on the site. It serves no
+  security.txt, no OpenID Connect discovery document, no RFC 9727 api-catalog, no ai-plugin
+  manifest and no A2A agent card at either the canonical or the legacy path.
+documents:
+  - path: /.well-known/oauth-authorization-server
+    spec: RFC 8414 OAuth 2.0 Authorization Server Metadata
+    status: 200
+    content_type: application/json
+    file: harbinger-health-oauth-authorization-server.json
+    highlights:
+      issuer: https://harbinger-health.com
+      authorization_endpoint: https://harbinger-health.com/oauth/authorize
+      token_endpoint: https://harbinger-health.com/oauth/token
+      revocation_endpoint: https://harbinger-health.com/oauth/revoke
+      grant_types_supported: [authorization_code, refresh_token]
+      code_challenge_methods_supported: [S256]
+      scopes_supported: [mcp]
+      token_endpoint_auth_methods_supported: [none]
+      client_id_metadata_document_supported: true
+  - path: /.well-known/oauth-protected-resource
+    spec: RFC 9728 OAuth 2.0 Protected Resource Metadata
+    status: 200
+    content_type: application/json
+    file: harbinger-health-oauth-protected-resource.json
+    highlights:
+      resource: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+      authorization_servers: [https://harbinger-health.com]
+      bearer_methods_supported: [header]
+      scopes_supported: [mcp]
+  - path: /.well-known/security.txt
+    spec: RFC 9116
+    status: 404
+  - path: /.well-known/openid-configuration
+    spec: OpenID Connect Discovery 1.0
+    status: 404
+  - path: /.well-known/api-catalog
+    spec: RFC 9727
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    spec: OpenAI plugin manifest (deprecated)
+    status: 404
+  - path: /.well-known/agent-card.json
+    spec: A2A 1.0.0 Agent Card
+    status: 404
+  - path: /.well-known/agent.json
+    spec: A2A pre-0.3 legacy Agent Card
+    status: 404
+other_discovery_surfaces:
+  - path: /wp-json/
+    status: 200
+    note: >-
+      WordPress REST route-discovery document, 268 routes across 15 namespaces. Saved verbatim to
+      openapi/harbinger-health-wp-json-discovery.json and derived into
+      openapi/harbinger-health-wordpress-wp-v2-openapi.yml.
+  - path: /wp-json/mcp
+    status: 200
+    note: MCP namespace index listing mcp-oauth-server and mcp-adapter-default-server.
+  - path: /wp-json/wp-abilities/v1/abilities
+    status: 401
+    note: WordPress Abilities API — the likely tool source for the MCP server; gated to anonymous callers.
+  - path: /robots.txt
+    status: 200
+    note: 'Yoast-generated. Crawl-delay: 10, Disallow empty (all user agents permitted), sitemap declared.'
+  - path: /sitemap_index.xml
+    status: 200
+    note: Yoast sitemap index covering post, page, category and author sitemaps.

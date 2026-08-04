@@ -1,0 +1,58 @@
+generated: '2026-08-04'
+method: searched
+source: >-
+  Site-wide search of https://harbinger-health.com (sitemap_index.xml, page-sitemap.xml, footer)
+  plus live probes on 2026-08-04
+summary: >-
+  Harbinger Health publishes no API lifecycle commitments of any kind. There is no versioning
+  policy, no deprecation policy, no Sunset or Deprecation header support, no SLA and no status
+  page. The only versioning present is the URI-path namespace WordPress core sets for its own REST
+  API. NO StatusPage and NO Deprecation pointer is emitted in apis.yml, because neither exists.
+versioning:
+  scheme: uri-path
+  current: wp/v2
+  set_by: WordPress core and installed plugins, not by Harbinger Health
+  docs: https://developer.wordpress.org/rest-api/
+  namespaces_observed: 15
+  policy: null
+  note: >-
+    Namespace versions can change under Harbinger Health with a WordPress or plugin upgrade and no
+    announcement, because the company has no published change process for this surface.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No Sunset or Deprecation response header was returned on any probed route, and no deprecation
+    or migration policy page exists on the site.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  probed:
+    - {host: 'status.harbinger-health.com', result: NXDOMAIN}
+    - {url: 'https://harbinger-health.com/status', result: 404}
+  note: No status page, no uptime history and no incident feed on any Harbinger Health host.
+changelog:
+  url: null
+  note: >-
+    https://harbinger-health.com/news-insights/ is a corporate press-release and scientific-data
+    feed (AACR/ASCO presentations, funding, publications), not a dated API or product changelog. No
+    ChangeLog artifact or pointer is emitted for this provider.
+support:
+  channels:
+    - {kind: email, value: 'info@harbinger-health.com'}
+    - {kind: email, value: 'press@harbinger-health.com'}
+    - {kind: email, value: 'partnerships@harbinger-health.com'}
+    - {kind: page, value: 'https://harbinger-health.com/contact/'}
+  developer_support: null
+  note: No developer support channel, forum, community or ticketing surface exists.
+gaps:
+  - No status page.
+  - No deprecation policy and no RFC 8594 header support.
+  - No SLA or uptime commitment.
+  - No API changelog.
+  - No developer support channel.

@@ -42,5 +42,41 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Harbinger Health is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/harbinger-health_stock/
+Harbinger Health is a Cambridge, Massachusetts biotechnology company founded out of Flagship
+Pioneering's Flagship Labs in 2018, building blood-based early cancer detection on the Harbinger HX
+platform — cell-free DNA methylation assay chemistry tuned for low tumour fraction, paired with
+machine learning operating under biologically informed constraints — and its clinical application,
+RESOLVE. Testing runs in a CLIA-certified, CAP-accredited high-complexity laboratory.
+
+- Website: https://harbinger-health.com/
+- RESOLVE: https://harbinger-health.com/resolve/
+- Platform technology: https://harbinger-health.com/platform-technology/
+- News and insights: https://harbinger-health.com/news-insights/
+
+## API posture (profiled 2026-08-04)
+
+**There is no developer API.** No developer portal, no documentation, no OpenAPI published by the
+company, no SDKs, no CLI, no pricing, no sign-up, no status page, no changelog, no bug-bounty or
+security.txt. The `developer.`, `docs.`, `api.`, `portal.`, `status.` and `trust.` subdomains do not
+resolve. No FHIR, HL7 or GA4GH surface exists — nothing about specimens, assays, results, orders or
+patients is publicly reachable, and nothing in this repository describes RESOLVE or Harbinger HX
+data.
+
+What the company *does* serve from its own host is unusual for a company with no developer
+programme, and is what this profile captures:
+
+| Surface | Status |
+|---|---|
+| `GET /wp-json/` — WordPress route discovery, 268 routes / 15 namespaces | 200, anonymous |
+| `wp/v2` content API — posts, pages, an `events` custom post type, media, search | 200, anonymous |
+| `/wp-json/mcp/mcp-oauth-server` — Model Context Protocol server | 401 `mcp_unauthorized` |
+| `/wp-json/mcp/mcp-adapter-default-server` — second MCP server | 401 `rest_forbidden` |
+| `/wp-json/wp-abilities/v1/abilities` — WordPress Abilities API (probable tool source) | 401 |
+| `/.well-known/oauth-authorization-server` — RFC 8414, OAuth 2.1 + PKCE S256, scope `mcp` | 200 |
+| `/.well-known/oauth-protected-resource` — RFC 9728, names the MCP server | 200 |
+| `/.well-known/security.txt`, `/openid-configuration`, `/api-catalog`, `/agent-card.json`, `/agent.json`, `/llms.txt`, `/openapi.json`, `/graphql` | 404 |
+
+The MCP tool catalogue is **auth-gated and has not been observed**, so no tool names, descriptions or
+input schemas are recorded anywhere in this repository. The OpenAPI in `openapi/` was **derived by
+API Evangelist** from the live WordPress route-discovery document — it is not a Harbinger Health
+artifact, and it describes a corporate-website content API.

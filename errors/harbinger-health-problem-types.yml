@@ -1,0 +1,90 @@
+generated: '2026-08-04'
+method: derived
+source: >-
+  openapi/harbinger-health-wordpress-wp-v2-openapi.yml plus error payloads probed live against
+  https://harbinger-health.com/wp-json/ on 2026-08-04
+format: wordpress-rest-error
+rfc9457: false
+note: >-
+  Harbinger Health serves no application/problem+json and publishes no error reference. The
+  envelope below is the WordPress REST error object, and every entry was captured verbatim from a
+  live response against this host — none is copied from upstream WordPress documentation or
+  inferred.
+envelope:
+  content_type: application/json
+  fields:
+    code: {type: string, description: Machine-readable error slug.}
+    message: {type: string, description: Human-readable message.}
+    data.status: {type: integer, description: HTTP status code repeated in the body.}
+    data.params: {type: object, description: Per-parameter message map (rest_invalid_param only).}
+    data.details: {type: object, description: Per-parameter nested error object (rest_invalid_param only).}
+problems:
+  - status: 400
+    code: rest_invalid_param
+    title: Invalid parameter(s)
+    detail: >-
+      One or more query or body parameters failed validation. data.params carries a message per
+      offending parameter and data.details carries a nested error object with its own code.
+    nested_codes: [rest_out_of_bounds]
+    remediation: >-
+      Correct the named parameter against the schema in the OpenAPI. per_page must be between 1
+      and 100 inclusive; page must be 1 or greater.
+    observed:
+      request: GET https://harbinger-health.com/wp-json/wp/v2/posts?per_page=500
+      example: examples/harbinger-health-error-400.json
+    source_operation: openapi/harbinger-health-wordpress-wp-v2-openapi.yml#listPosts
+  - status: 401
+    code: rest_forbidden
+    title: Sorry, you are not allowed to do that.
+    detail: >-
+      The route requires an authenticated user with sufficient capability. Returned by
+      /wp/v2/settings, every wp-abilities/v1 route, and the mcp-adapter-default-server MCP endpoint.
+    remediation: >-
+      Present an application password over HTTP Basic
+      (https://harbinger-health.com/wp-admin/authorize-application.php), or for the MCP surface an
+      OAuth 2.1 bearer token carrying scope mcp.
+    observed:
+      request: GET https://harbinger-health.com/wp-json/wp/v2/settings
+      example: examples/harbinger-health-error-401.json
+    source_operation: openapi/harbinger-health-wordpress-wp-v2-openapi.yml#listSettings
+  - status: 401
+    code: mcp_unauthorized
+    title: MCP authentication required.
+    detail: >-
+      The MCP OAuth server rejects unauthenticated JSON-RPC. This is the distinct MCP-layer
+      challenge, not the generic WordPress rest_forbidden.
+    remediation: >-
+      Complete the authorization-code + PKCE flow at https://harbinger-health.com/oauth/authorize
+      and present the bearer token in the Authorization header. See
+      scopes/harbinger-health-scopes.yml.
+    observed:
+      request: 'POST https://harbinger-health.com/wp-json/mcp/mcp-oauth-server {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+      body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    source_operation: mcp/harbinger-health-mcp.yml#mcp-oauth-server
+  - status: 404
+    code: rest_post_invalid_id
+    title: Invalid post ID.
+    detail: The numeric id in the path does not resolve to a readable object of that type.
+    remediation: List the collection first and use an id returned by it.
+    observed:
+      request: GET https://harbinger-health.com/wp-json/wp/v2/posts/999999999
+      example: examples/harbinger-health-error-404.json
+    source_operation: openapi/harbinger-health-wordpress-wp-v2-openapi.yml#getPostsById
+  - status: 404
+    code: rest_no_route
+    title: No route was found matching the URL and request method.
+    detail: >-
+      The path is not a registered route in this namespace, or the method is not allowed on it.
+      Note the site returns this for method mismatches too, not a 405.
+    remediation: >-
+      Fetch https://harbinger-health.com/wp-json/ and confirm the route and its methods before
+      calling.
+    observed:
+      request: GET https://harbinger-health.com/wp-json/wp/v2/nope
+      example: examples/harbinger-health-error-no-route.json
+    source_operation: openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+gaps:
+  - No RFC 9457 problem+json; errors carry no type URI and no documentation link.
+  - No published error reference page, so no remediation text is authored by the provider.
+  - Method-not-allowed is reported as 404 rest_no_route rather than 405, which makes capability
+    probing ambiguous for an agent.

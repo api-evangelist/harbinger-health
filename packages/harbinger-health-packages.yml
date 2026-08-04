@@ -1,0 +1,32 @@
+generated: '2026-08-04'
+method: searched
+source: Public package registry and code-host searches performed 2026-08-04
+summary: >-
+  Harbinger Health ships no client libraries, no CLI and no public source code. Every major public
+  registry was searched and every one returned zero first-party results, and no GitHub
+  organisation exists under any plausible slug. NO SDKs pointer is emitted for this provider.
+packages: []
+registries_probed:
+  - {registry: npm, query: harbinger-health, endpoint: 'https://registry.npmjs.org/-/v1/search?text=harbinger-health', first_party_results: 0, note: 'search returned unrelated packages (health, grpc-health-check, …) only'}
+  - {registry: pypi, query: harbinger-health, endpoint: 'https://pypi.org/pypi/harbinger-health/json', status: 404}
+  - {registry: rubygems, query: harbinger-health, first_party_results: 0}
+  - {registry: nuget, query: harbinger-health, first_party_results: 0}
+  - {registry: packagist, query: harbinger-health, first_party_results: 0}
+  - {registry: crates.io, query: harbinger-health, first_party_results: 0}
+  - {registry: 'pkg.go.dev', query: harbinger-health, first_party_results: 0}
+  - {registry: 'maven central', query: harbinger-health, first_party_results: 0}
+github_organization:
+  url: null
+  probed:
+    - {org: harbinger-health, api: 'https://api.github.com/orgs/harbinger-health', status: 404}
+    - {org: harbingerhealth, api: 'https://api.github.com/orgs/harbingerhealth', status: 404}
+    - {org: harbinger-hx, api: 'https://api.github.com/orgs/harbinger-hx', status: 404}
+  note: >-
+    No GitHub organisation exists for Harbinger Health. No open-source bioinformatics pipeline, no
+    reference implementation and no analysis code is published, which is notable for a company
+    whose platform claim is computational.
+third_party_client_options:
+  note: >-
+    The only callable surface is a stock WordPress REST API, so any generic WordPress REST client
+    will talk to it. Those are third-party libraries for WordPress, not Harbinger Health SDKs, and
+    are deliberately NOT listed here as packages for this provider.

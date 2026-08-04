@@ -1,0 +1,78 @@
+generated: '2026-08-04'
+method: derived
+source: mcp/harbinger-health-mcp.yml + openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+summary: >-
+  Harbinger Health has both a published MCP server and a machine-describable REST surface on the
+  same host, which is exactly the condition this crosswalk exists for. It is emitted DELIBERATELY
+  EMPTY on the MCP side: the live tools/list is auth-gated (HTTP 401 mcp_unauthorized), the
+  WordPress Abilities API that supplies the tools is also 401, and the provider publishes no
+  llms.txt, no MCP docs and no tool reference. There is therefore no observed tool name to bind to
+  an operationId, and inventing one would fabricate the provider's agent surface. Every REST
+  operation is recorded on the rest_only side so the divergence is visible rather than silently
+  dropped, and the crosswalk is re-runnable the moment an authenticated introspection is possible.
+surfaces:
+  openapi:
+    file: openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+    method: derived
+    origin: https://harbinger-health.com/wp-json/ route discovery
+    gated: false
+    note: Anonymously readable in view/embed context; write and edit context require a credential.
+  graphql:
+    endpoint: null
+    note: 'No GraphQL surface. https://harbinger-health.com/graphql returns 404.'
+  mcp:
+    servers:
+      - https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+      - https://harbinger-health.com/wp-json/mcp/mcp-adapter-default-server
+    gated: true
+    gate: 'OAuth 2.1 bearer, scope mcp (RFC 9728 protected resource); anonymous tools/list => 401'
+  abilities:
+    endpoint: https://harbinger-health.com/wp-json/wp-abilities/v1/abilities
+    gated: true
+    note: The probable tool source for the MCP server; 401 to anonymous callers.
+crosswalk: []
+mcp_only: []
+rest_only:
+  - capability: Content — articles and news posts
+    operations: [listPosts, getPostsById, createPosts, createPostsById, deletePostsById,
+      getPostsByParentRevisions, getPostsByParentRevisionsById, getPostsByIdAutosaves]
+  - capability: Content — marketing pages
+    operations: [listPages, getPagesById, createPages, createPagesById, deletePagesById,
+      getPagesByParentRevisions, getPagesByParentRevisionsById]
+  - capability: Content — events custom post type
+    operations: [listEvents, getEventsById, createEvents, createEventsById, deleteEventsById,
+      getEventsByIdAutosaves]
+  - capability: Taxonomy — categories and tags
+    operations: [listCategories, getCategoriesById, createCategories, createCategoriesById,
+      deleteCategoriesById, listTags, getTagsById, createTags, createTagsById, deleteTagsById,
+      listTaxonomies, getTaxonomiesByTaxonomy]
+  - capability: Media library
+    operations: [listMedia, getMediaById, createMedia, createMediaById, deleteMediaById,
+      createMediaByIdEdit, createMediaByIdPostProcess]
+  - capability: Site search
+    operations: [listSearch]
+  - capability: Site metadata and structure
+    operations: [listIndex, listTypes, getTypesByType, listStatuses, getStatusesByStatus,
+      listUsers, getUsersById, listMenus, listMenuItems, listMenuLocations, listSidebars,
+      listSettings]
+  - capability: Block editor internals
+    operations: [listBlocks, listBlockTypes, listBlockDirectorySearch, listBlockPatternsPatterns,
+      listBlockPatternsCategories, createBlockRendererByName, listPatternDirectoryPatterns]
+  - capability: Theming — global styles, fonts, icons, templates
+    operations: [listFontFamilies, listFontCollections, getGlobalStylesById, listIcons,
+      listTemplates, listTemplateParts, listThemes, listNavigation]
+  - capability: Site administration
+    operations: [listPlugins, getPluginsByPlugin, listComments, getCommentsById]
+coverage:
+  mcp_servers_published: 2
+  mcp_tools_named: 0
+  mcp_tools_bound: 0
+  mcp_only: 0
+  rest_operations_total: 236
+  rest_operations_with_a_tool: 0
+  binding_possible: false
+  blocked_by: authenticated-introspection-required
+confidence_note: >-
+  No confidence grades are recorded because no mapping was made. When the MCP tool list becomes
+  observable, each tool should be bound to the wp/v2 operationId(s) above and given an honest
+  confidence, and this file re-emitted with method unchanged (derived) but a populated crosswalk.

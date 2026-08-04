@@ -1,0 +1,123 @@
+generated: '2026-08-04'
+method: derived
+source: >-
+  openapi/harbinger-health-wordpress-wp-v2-openapi.yml, the live GET /wp-json/wp/v2/types and
+  /wp-json/wp/v2/taxonomies responses captured in examples/, and the wp-json route-discovery
+  document
+scope: >-
+  The entity graph of the only publicly callable Harbinger Health API — the content model of the
+  corporate website. There is no clinical, specimen, assay, result, patient or order entity
+  anywhere on any Harbinger Health host; the RESOLVE and Harbinger HX data model is entirely
+  private.
+id_convention:
+  style: opaque positive integer, per entity type
+  note: >-
+    No prefixed or namespaced identifiers. Cross-entity references are bare integers, so an id is
+    only meaningful together with the collection it came from.
+entities:
+  - name: post
+    rest_base: posts
+    label: Posts
+    hierarchical: false
+    description: News, press releases and scientific-update articles. 51 items at capture time.
+    key_fields: [id, date, date_gmt, modified, slug, status, link, title, content, excerpt, author,
+      featured_media, categories, tags, sticky, format]
+    relationships:
+      - {kind: belongs_to, target: user, via: author}
+      - {kind: has_one, target: media, via: featured_media}
+      - {kind: has_many, target: category, via: categories}
+      - {kind: has_many, target: post_tag, via: tags}
+      - {kind: has_many, target: comment, via: 'comment.post'}
+      - {kind: has_many, target: revision, via: 'posts/{parent}/revisions'}
+      - {kind: has_many, target: autosave, via: 'posts/{id}/autosaves'}
+  - name: page
+    rest_base: pages
+    label: Pages
+    hierarchical: true
+    description: >-
+      The marketing pages — about, resolve, the-science, platform-technology, partnerships,
+      contact, job, terms-of-use, privacy-policy.
+    key_fields: [id, date, slug, status, link, title, content, excerpt, author, featured_media,
+      parent, menu_order, template]
+    relationships:
+      - {kind: belongs_to, target: page, via: parent}
+      - {kind: belongs_to, target: user, via: author}
+      - {kind: has_one, target: media, via: featured_media}
+  - name: events
+    rest_base: events
+    label: Events
+    hierarchical: false
+    description: >-
+      A custom post type registered on this site — the only non-stock content entity Harbinger
+      Health has added. Backs conference presence pages such as the ASCO 2026 Annual Meeting entry.
+    key_fields: [id, date, slug, status, link, title, content, excerpt, author, featured_media, template]
+    relationships:
+      - {kind: belongs_to, target: user, via: author}
+      - {kind: has_one, target: media, via: featured_media}
+      - {kind: has_many, target: autosave, via: 'events/{id}/autosaves'}
+  - name: media
+    rest_base: media
+    label: Media
+    hierarchical: false
+    description: Attachments — images, PDFs and other assets in the library.
+    key_fields: [id, date, slug, link, title, author, media_type, mime_type, source_url, media_details, post, alt_text]
+    relationships:
+      - {kind: belongs_to, target: post, via: post}
+      - {kind: belongs_to, target: user, via: author}
+  - name: category
+    rest_base: categories
+    label: Categories
+    taxonomy: category
+    hierarchical: true
+    key_fields: [id, count, description, link, name, slug, parent]
+    relationships:
+      - {kind: belongs_to, target: category, via: parent}
+      - {kind: has_many, target: post, via: 'post.categories'}
+  - name: post_tag
+    rest_base: tags
+    label: Tags
+    taxonomy: post_tag
+    hierarchical: false
+    key_fields: [id, count, description, link, name, slug]
+    relationships:
+      - {kind: has_many, target: post, via: 'post.tags'}
+  - name: user
+    rest_base: users
+    label: Users
+    key_fields: [id, name, url, description, link, slug, avatar_urls]
+    note: Anonymously readable in view context; author identities are public.
+    relationships:
+      - {kind: has_many, target: post, via: 'post.author'}
+  - name: comment
+    rest_base: comments
+    label: Comments
+    key_fields: [id, post, parent, author, author_name, date, content, link, status, type]
+    relationships:
+      - {kind: belongs_to, target: post, via: post}
+      - {kind: belongs_to, target: comment, via: parent}
+      - {kind: belongs_to, target: user, via: author}
+  - name: nav_menu_item
+    rest_base: menu-items
+    label: Navigation Menu Items
+    key_fields: [id, title, url, parent, menus, object, object_id, menu_order]
+    relationships:
+      - {kind: belongs_to, target: nav_menu, via: menus}
+      - {kind: belongs_to, target: nav_menu_item, via: parent}
+site_structure_entities:
+  note: >-
+    Registered but presentational rather than editorial; listed for completeness and derived from
+    the same /wp/v2/types response.
+  types: [wp_block, wp_template, wp_template_part, wp_global_styles, wp_navigation, wp_font_family,
+    wp_font_face]
+taxonomies:
+  - {name: category, applies_to: [post], hierarchical: true, rest_base: categories}
+  - {name: post_tag, applies_to: [post], hierarchical: false, rest_base: tags}
+  - {name: nav_menu, applies_to: [nav_menu_item], rest_base: menus}
+  - {name: wp_pattern_category, applies_to: [wp_block], rest_base: wp_pattern_category}
+absent_domain_entities:
+  note: >-
+    Recorded deliberately. A cancer-diagnostics company's real data model — specimen, accession,
+    assay run, methylation signal, tumour fraction, tissue-of-origin call, report, order, provider,
+    patient — has no public representation on any Harbinger Health host. Nothing in this repository
+    should be read as describing RESOLVE or Harbinger HX data.
+render: null

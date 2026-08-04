@@ -1,0 +1,75 @@
+generated: '2026-08-04'
+method: searched
+source: >-
+  https://harbinger-health.com/wp-json/ route-discovery authentication block,
+  https://harbinger-health.com/.well-known/oauth-authorization-server,
+  https://harbinger-health.com/.well-known/oauth-protected-resource, and live 401 probes on
+  2026-08-04
+docs: null
+summary:
+  types: [none, http, oauth2]
+  api_key_in: []
+  oauth2_flows: [authorizationCode]
+  anonymous_read: true
+  note: >-
+    Harbinger Health publishes no authentication documentation of any kind — there is no developer
+    portal and no docs site. The profile below is assembled entirely from the machine-readable
+    discovery documents the host serves and from observed HTTP responses.
+schemes:
+  - name: anonymous
+    type: none
+    applies_to: wp/v2 read routes in view and embed context
+    description: >-
+      The public content surface is readable with no credential at all. GET /wp-json/wp/v2/posts,
+      /pages, /categories, /tags, /media, /types, /taxonomies, /users and /search all returned HTTP
+      200 to an unauthenticated caller on 2026-08-04.
+    sources: [openapi/harbinger-health-wordpress-wp-v2-openapi.yml]
+  - name: applicationPassword
+    type: http
+    scheme: basic
+    description: >-
+      WordPress application password, advertised by the site's own route-discovery document under
+      authentication.application-passwords. Credentials are issued from
+      https://harbinger-health.com/wp-admin/authorize-application.php and presented as
+      'Authorization: Basic base64(user:application-password)'. Required for edit context, for every
+      write method, and for the routes that returned 401 anonymously (/wp/v2/settings,
+      wp-abilities/v1/*).
+    authorization_endpoint: https://harbinger-health.com/wp-admin/authorize-application.php
+    sources:
+      - openapi/harbinger-health-wordpress-wp-v2-openapi.yml
+      - openapi/harbinger-health-wp-json-discovery.json
+  - name: mcp-oauth
+    type: oauth2
+    description: >-
+      A real OAuth 2.1 deployment on the provider's own origin, guarding the Model Context Protocol
+      server. Discovered through RFC 8414 authorization-server metadata and RFC 9728
+      protected-resource metadata. Public clients with PKCE S256; bearer token presented in the
+      Authorization header; a single mcp scope.
+    issuer: https://harbinger-health.com
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://harbinger-health.com/oauth/authorize
+        tokenUrl: https://harbinger-health.com/oauth/token
+        revocationUrl: https://harbinger-health.com/oauth/revoke
+        pkce: [S256]
+        scopes: [mcp]
+    bearer_methods_supported: [header]
+    client_registration: client-ID metadata document (client_id_metadata_document_supported true)
+    protected_resource: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+    scopes_artifact: scopes/harbinger-health-scopes.yml
+    sources:
+      - well-known/harbinger-health-oauth-authorization-server.json
+      - well-known/harbinger-health-oauth-protected-resource.json
+observed_challenges:
+  - {url: 'https://harbinger-health.com/wp-json/mcp/mcp-oauth-server', status: 401, code: mcp_unauthorized}
+  - {url: 'https://harbinger-health.com/wp-json/mcp/mcp-adapter-default-server', status: 401, code: rest_forbidden}
+  - {url: 'https://harbinger-health.com/wp-json/wp-abilities/v1/abilities', status: 401, code: rest_forbidden}
+  - {url: 'https://harbinger-health.com/wp-json/wp/v2/settings', status: 401, code: rest_forbidden}
+transport:
+  https_only: true
+  tls_version: TLSv1.3
+  cors_allowed_headers: [Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type]
+gaps:
+  - No OpenID Connect discovery document; no identity layer is advertised alongside the OAuth server.
+  - No mutual TLS, no API keys and no signed-request scheme anywhere on the host.
+  - No published authentication guide, key-rotation policy or credential-lifetime statement.
