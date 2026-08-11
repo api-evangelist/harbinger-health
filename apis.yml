@@ -66,67 +66,609 @@ maintainers:
   - FN: APIs.json
     email: info@apis.io
 apis:
-  - aid: harbinger-health:harbinger-health-wordpress-rest-api
-    name: Harbinger Health WordPress REST API
-    description: >-
-      The stock WordPress REST API served by Harbinger Health's corporate site at
-      https://harbinger-health.com/wp-json/. Confirmed live and anonymously readable on 2026-08-04
-      (HTTP 200, application/json, 256,594 bytes), the root discovery document self-describes 268
-      routes across 15 namespaces including wp/v2, wp-abilities/v1, mcp, yoast/v1, redirection/v1,
-      leadin/v1 (HubSpot) and wp-rocket/v1, and advertises WordPress application passwords as its
-      authentication scheme. A custom events post type is registered alongside posts, pages and
-      media. This is a content-management surface for the corporate website - it is NOT a clinical,
-      laboratory, diagnostic, genomic or patient-data API, no Harbinger HX or RESOLVE result is
-      reachable through it, and Harbinger Health does not document or support it as a developer
-      product. It is catalogued here because it is the only publicly callable, machine-describable
-      API found on any Harbinger Health host.
-    humanURL: https://developer.wordpress.org/rest-api/
-    baseURL: https://harbinger-health.com/wp-json
-    tags:
-      - CMS
-      - Content
-      - WordPress
-      - Website
-    properties:
-      - type: OpenAPI
-        url: openapi/harbinger-health-wordpress-wp-v2-openapi.yml
-      - type: Overlay
-        url: overlays/harbinger-health-wordpress-wp-v2-overlay.yaml
-      - type: Examples
-        url: examples/_index.yml
-      - type: DataModel
-        url: data-model/harbinger-health-data-model.yml
-      - type: ErrorCatalog
-        url: errors/harbinger-health-problem-types.yml
-  - aid: harbinger-health:harbinger-health-mcp-server
-    name: Harbinger Health MCP Server
-    description: >-
-      A live Model Context Protocol server namespace published on Harbinger Health's own host at
-      https://harbinger-health.com/wp-json/mcp/, exposing two servers - mcp-oauth-server and
-      mcp-adapter-default-server - over POST/GET/DELETE. It is protected by a real OAuth 2.1
-      deployment: https://harbinger-health.com/.well-known/oauth-authorization-server returns RFC
-      8414 metadata (authorization code with PKCE S256, refresh tokens, public clients, client ID
-      metadata documents) and https://harbinger-health.com/.well-known/oauth-protected-resource
-      returns RFC 9728 metadata naming the MCP server as the protected resource with a single mcp
-      scope. An anonymous tools/list JSON-RPC call returns HTTP 401 mcp_unauthorized, so the tool
-      catalogue and its input schemas require an authenticated introspection; the tool set is
-      almost certainly drawn from the WordPress Abilities API registered at wp-abilities/v1, which
-      is likewise 401 to anonymous callers. This is a site-content agent surface, not a clinical
-      or diagnostic one.
-    humanURL: https://modelcontextprotocol.io/
-    baseURL: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
-    tags:
-      - MCP
-      - Agents
-      - OAuth
-      - WordPress
-    properties:
-      - type: MCPServer
-        url: mcp/harbinger-health-mcp.yml
-      - type: ToolCrosswalk
-        url: mcp/harbinger-health-tool-crosswalk.yml
-      - type: OAuthScopes
-        url: scopes/harbinger-health-scopes.yml
+- aid: harbinger-health:harbinger-health-mcp-server
+  name: Harbinger Health MCP Server
+  description: >-
+    A live Model Context Protocol server namespace published on Harbinger Health's own host at https://harbinger-health.com/wp-json/mcp/,
+    exposing two servers - mcp-oauth-server and mcp-adapter-default-server - over POST/GET/DELETE. It
+    is protected by a real OAuth 2.1 deployment: https://harbinger-health.com/.well-known/oauth-authorization-server
+    returns RFC 8414 metadata (authorization code with PKCE S256, refresh tokens, public clients, client
+    ID metadata documents) and https://harbinger-health.com/.well-known/oauth-protected-resource returns
+    RFC 9728 metadata naming the MCP server as the protected resource with a single mcp scope. An anonymous
+    tools/list JSON-RPC call returns HTTP 401 mcp_unauthorized, so the tool catalogue and its input schemas
+    require an authenticated introspection; the tool set is almost certainly drawn from the WordPress
+    Abilities API registered at wp-abilities/v1, which is likewise 401 to anonymous callers. This is a
+    site-content agent surface, not a clinical or diagnostic one.
+  humanURL: https://modelcontextprotocol.io/
+  baseURL: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+  tags:
+  - MCP
+  - Agents
+  - OAuth
+  - WordPress
+  properties:
+  - type: MCPServer
+    url: mcp/harbinger-health-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/harbinger-health-tool-crosswalk.yml
+  - type: OAuthScopes
+    url: scopes/harbinger-health-scopes.yml
+- aid: harbinger-health:harbinger-health-block-directory-api
+  name: Harbinger Health Block Directory API
+  description: WordPress block-directory resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - block-directory
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-block-directory-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-block-patterns-api
+  name: Harbinger Health Block Patterns API
+  description: WordPress block-patterns resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - block-patterns
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-block-patterns-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-block-renderer-api
+  name: Harbinger Health Block Renderer API
+  description: WordPress block-renderer resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - block-renderer
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-block-renderer-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-block-types-api
+  name: Harbinger Health Block Types API
+  description: WordPress block-types resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - block-types
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-block-types-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-blocks-api
+  name: Harbinger Health Blocks API
+  description: WordPress blocks resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - blocks
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-blocks-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-categories-api
+  name: Harbinger Health Categories API
+  description: WordPress categories resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - categories
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-categories-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-comments-api
+  name: Harbinger Health Comments API
+  description: WordPress comments resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - comments
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-comments-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-events-api
+  name: Harbinger Health Events API
+  description: WordPress events resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - events
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-events-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-font-collections-api
+  name: Harbinger Health Font Collections API
+  description: WordPress font-collections resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - font-collections
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-font-collections-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-font-families-api
+  name: Harbinger Health Font Families API
+  description: WordPress font-families resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - font-families
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-font-families-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-global-styles-api
+  name: Harbinger Health Global Styles API
+  description: WordPress global-styles resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - global-styles
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-global-styles-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-icons-api
+  name: Harbinger Health Icons API
+  description: WordPress icons resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - icons
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-icons-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-index-api
+  name: Harbinger Health Index API
+  description: WordPress index resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - index
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-index-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-media-api
+  name: Harbinger Health Media API
+  description: WordPress media resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - media
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-media-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-menu-items-api
+  name: Harbinger Health Menu Items API
+  description: WordPress menu-items resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - menu-items
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-menu-items-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-menu-locations-api
+  name: Harbinger Health Menu Locations API
+  description: WordPress menu-locations resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - menu-locations
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-menu-locations-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-menus-api
+  name: Harbinger Health Menus API
+  description: WordPress menus resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - menus
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-menus-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-navigation-api
+  name: Harbinger Health Navigation API
+  description: WordPress navigation resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - navigation
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-navigation-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-pages-api
+  name: Harbinger Health Pages API
+  description: WordPress pages resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - pages
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-pages-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-pattern-directory-api
+  name: Harbinger Health Pattern Directory API
+  description: WordPress pattern-directory resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - pattern-directory
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-pattern-directory-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-plugins-api
+  name: Harbinger Health Plugins API
+  description: WordPress plugins resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - plugins
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-plugins-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-posts-api
+  name: Harbinger Health Posts API
+  description: WordPress posts resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - posts
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-posts-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-search-api
+  name: Harbinger Health Search API
+  description: WordPress search resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - search
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-search-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-settings-api
+  name: Harbinger Health Settings API
+  description: WordPress settings resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - settings
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-settings-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-sidebars-api
+  name: Harbinger Health Sidebars API
+  description: WordPress sidebars resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - sidebars
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-sidebars-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-statuses-api
+  name: Harbinger Health Statuses API
+  description: WordPress statuses resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - statuses
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-statuses-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-tags-api
+  name: Harbinger Health Tags API
+  description: WordPress tags resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - tags
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-tags-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-taxonomies-api
+  name: Harbinger Health Taxonomies API
+  description: WordPress taxonomies resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - taxonomies
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-taxonomies-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-template-parts-api
+  name: Harbinger Health Template Parts API
+  description: WordPress template-parts resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - template-parts
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-template-parts-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-templates-api
+  name: Harbinger Health Templates API
+  description: WordPress templates resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - templates
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-templates-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-themes-api
+  name: Harbinger Health Themes API
+  description: WordPress themes resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - themes
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-themes-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-types-api
+  name: Harbinger Health Types API
+  description: WordPress types resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - types
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-types-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-users-api
+  name: Harbinger Health Users API
+  description: WordPress users resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-users-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-widget-types-api
+  name: Harbinger Health Widget Types API
+  description: WordPress widget-types resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - widget-types
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-widget-types-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-widgets-api
+  name: Harbinger Health Widgets API
+  description: WordPress widgets resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-widgets-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
+- aid: harbinger-health:harbinger-health-wp-pattern-category-api
+  name: Harbinger Health Wp Pattern Category API
+  description: WordPress wp_pattern_category resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://harbinger-health.com/wp-json
+  tags:
+  - wp_pattern_category
+  properties:
+  - type: OpenAPI
+    url: openapi/harbinger-health-wp-pattern-category-api-openapi.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/harbinger-health-data-model.yml
+  - type: ErrorCatalog
+    url: errors/harbinger-health-problem-types.yml
 common:
   - type: Website
     url: https://harbinger-health.com/
