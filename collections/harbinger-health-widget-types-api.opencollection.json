@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Widget Types API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "widget-types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/widget-types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widget-types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/widget-types"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/widget-types/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widget-types/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/widget-types/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/widget-types/{id}/encode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widget-types/:id/encode",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /wp/v2/widget-types/{id}/encode"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/widget-types/{id}/render",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widget-types/:id/render",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /wp/v2/widget-types/{id}/render"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Block Types API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "block-types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/block-types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/block-types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Block namespace."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/block-types"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/block-types/{namespace}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/block-types/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/block-types/{namespace}"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/block-types/{namespace}/{name}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/block-types/:namespace/:name",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/block-types/{namespace}/{name}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

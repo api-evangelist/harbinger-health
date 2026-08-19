@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Block Patterns API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "block-patterns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/block-patterns/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/block-patterns/categories"
+          },
+          "docs": "GET /wp/v2/block-patterns/categories"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/block-patterns/patterns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/block-patterns/patterns"
+          },
+          "docs": "GET /wp/v2/block-patterns/patterns"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

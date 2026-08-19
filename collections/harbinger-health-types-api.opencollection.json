@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Types API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/types"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/types/{type}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/types/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/types/{type}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

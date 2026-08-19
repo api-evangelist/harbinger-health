@@ -1,0 +1,110 @@
+openapi: 3.2.0
+info:
+  title: Harbinger Health WordPress REST API (wp/v2) Block Directory API
+  version: 2.0.0
+  summary: The wp/v2 namespace of the WordPress REST API served by Harbinger Health's website.
+  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH. Harbinger Health publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://harbinger-health.com/wp-json/ on 2026-08-04 (268 routes across 15 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the corporate website - it is NOT a clinical, laboratory, diagnostic, genomic or patient-data API, and no Harbinger HX or RESOLVE test data is reachable through it.
+  contact:
+    name: Harbinger Health
+    url: https://harbinger-health.com/contact/
+    email: info@harbinger-health.com
+  x-apievangelist-method: derived
+  x-apievangelist-source: openapi/harbinger-health-wp-json-discovery.json
+  x-apievangelist-derived: '2026-08-04'
+  x-upstream-documentation: https://developer.wordpress.org/rest-api/
+servers:
+- url: https://harbinger-health.com/wp-json
+  description: Harbinger Health corporate site (WP Engine, fronted by Cloudflare)
+tags:
+- name: block-directory
+  description: WordPress block-directory resource routes.
+paths:
+  /wp/v2/block-directory/search:
+    get:
+      operationId: listBlockDirectorySearch
+      summary: GET /wp/v2/block-directory/search
+      tags:
+      - block-directory
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        description: Current page of the collection.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        description: Maximum number of items to be returned in result set.
+      - name: term
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Limit result set to blocks matching the search term.
+      responses:
+        '200':
+          description: Successful response. WordPress route discovery does not publish response schemas, so the body is described generically.
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Invalid parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: Authentication required or insufficient capability (rest_forbidden).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No route or resource matched (rest_no_route / rest_post_invalid_id).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  schemas:
+    WPError:
+      type: object
+      description: The WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_forbidden.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code.
+      required:
+      - code
+      - message
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress application password, advertised by the site's route-discovery document at authentication.application-passwords. Issued from https://harbinger-health.com/wp-admin/authorize-application.php. Anonymous callers may read the public view/embed context without any credential.

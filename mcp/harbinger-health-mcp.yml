@@ -2,47 +2,51 @@ generated: '2026-08-04'
 method: searched
 status: published
 source: https://harbinger-health.com/wp-json/mcp
-summary: >-
-  Harbinger Health publishes a real, live Model Context Protocol server on its own host. This is
-  not a candidate surface derived from an OpenAPI — the MCP namespace is registered in the site's
-  WordPress route-discovery document, the server is named as the protected resource in an RFC 9728
-  document, and an RFC 8414 authorization-server document declares an OAuth 2.1 flow with a single
-  mcp scope. The tool catalogue itself is auth-gated: an anonymous JSON-RPC tools/list returns
-  HTTP 401.
+summary: 'Harbinger Health publishes a real, live Model Context Protocol server on its own host. This
+  is not a candidate surface derived from an OpenAPI — the MCP namespace is registered in the site''s
+  WordPress route-discovery document, the server is named as the protected resource in an RFC 9728 document,
+  and an RFC 8414 authorization-server document declares an OAuth 2.1 flow with a single mcp scope. The
+  tool catalogue itself is auth-gated: an anonymous JSON-RPC tools/list returns HTTP 401.'
 search_result:
   official_server: found
   searched:
-    - https://harbinger-health.com/wp-json/ (route discovery — mcp namespace present)
-    - https://harbinger-health.com/wp-json/mcp (namespace index — two servers)
-    - https://harbinger-health.com/.well-known/oauth-protected-resource (RFC 9728, names the MCP server)
-    - https://harbinger-health.com/.well-known/oauth-authorization-server (RFC 8414, scope mcp)
-    - https://harbinger-health.com/llms.txt (404 — no published tool list to fall back to)
-    - GitHub organisations harbinger-health / harbingerhealth / harbinger-hx (all 404)
-    - npm registry search for harbinger-health (0 first-party results)
+  - https://harbinger-health.com/wp-json/ (route discovery — mcp namespace present)
+  - https://harbinger-health.com/wp-json/mcp (namespace index — two servers)
+  - https://harbinger-health.com/.well-known/oauth-protected-resource (RFC 9728, names the MCP server)
+  - https://harbinger-health.com/.well-known/oauth-authorization-server (RFC 8414, scope mcp)
+  - https://harbinger-health.com/llms.txt (404 — no published tool list to fall back to)
+  - GitHub organisations harbinger-health / harbingerhealth / harbinger-hx (all 404)
+  - npm registry search for harbinger-health (0 first-party results)
 servers:
-  - name: mcp-oauth-server
-    url: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
-    transport: http
-    methods: [POST, GET, DELETE]
-    authentication: OAuth 2.1 bearer token, scope mcp
-    protected_resource_metadata: https://harbinger-health.com/.well-known/oauth-protected-resource
-    probe:
-      request: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
-      accept: application/json, text/event-stream
-      http_status: 401
-      body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
-      fetched: '2026-08-04'
-  - name: mcp-adapter-default-server
-    url: https://harbinger-health.com/wp-json/mcp/mcp-adapter-default-server
-    transport: http
-    methods: [POST, GET, DELETE]
-    authentication: WordPress REST permission callback (cookie/nonce or application password)
-    probe:
-      request: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
-      accept: application/json, text/event-stream
-      http_status: 401
-      body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
-      fetched: '2026-08-04'
+- name: mcp-oauth-server
+  url: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+  transport: http
+  methods:
+  - POST
+  - GET
+  - DELETE
+  authentication: OAuth 2.1 bearer token, scope mcp
+  protected_resource_metadata: https://harbinger-health.com/.well-known/oauth-protected-resource
+  probe:
+    request: POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
+    accept: application/json, text/event-stream
+    http_status: 401
+    body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    fetched: '2026-08-04'
+- name: mcp-adapter-default-server
+  url: https://harbinger-health.com/wp-json/mcp/mcp-adapter-default-server
+  transport: http
+  methods:
+  - POST
+  - GET
+  - DELETE
+  authentication: WordPress REST permission callback (cookie/nonce or application password)
+  probe:
+    request: POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
+    accept: application/json, text/event-stream
+    http_status: 401
+    body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+    fetched: '2026-08-04'
 authorization:
   spec: RFC 8414 + RFC 9728 + OAuth 2.1 (PKCE)
   metadata: well-known/harbinger-health-oauth-authorization-server.json
@@ -50,42 +54,70 @@ authorization:
   authorization_endpoint: https://harbinger-health.com/oauth/authorize
   token_endpoint: https://harbinger-health.com/oauth/token
   revocation_endpoint: https://harbinger-health.com/oauth/revoke
-  grant_types: [authorization_code, refresh_token]
-  pkce: [S256]
+  grant_types:
+  - authorization_code
+  - refresh_token
+  pkce:
+  - S256
   public_clients: true
   client_id_metadata_document_supported: true
-  scopes: [mcp]
+  scopes:
+  - mcp
   scopes_artifact: scopes/harbinger-health-scopes.yml
 tools:
   enumerable: false
   count: null
-  note: >-
-    NOT ENUMERATED AND NOT INVENTED. The live tool catalogue requires an authenticated
-    introspection (tools/list returns 401 to anonymous callers) and Harbinger Health publishes no
-    llms.txt, no MCP documentation and no tool reference to fall back to. The tool set is almost
-    certainly assembled from the WordPress Abilities API registered at wp-abilities/v1 on the same
-    host, whose /abilities and /categories routes are themselves 401 to anonymous callers, but
-    that is an inference about the mechanism — not an observed list — so no tool names, no
-    descriptions and no input schemas are recorded here.
+  note: NOT ENUMERATED AND NOT INVENTED. The live tool catalogue requires an authenticated introspection
+    (tools/list returns 401 to anonymous callers) and Harbinger Health publishes no llms.txt, no MCP documentation
+    and no tool reference to fall back to. The tool set is almost certainly assembled from the WordPress
+    Abilities API registered at wp-abilities/v1 on the same host, whose /abilities and /categories routes
+    are themselves 401 to anonymous callers, but that is an inference about the mechanism — not an observed
+    list — so no tool names, no descriptions and no input schemas are recorded here.
   to_enumerate:
-    - Register a client via the client-ID-metadata-document flow at https://harbinger-health.com/oauth/authorize
-    - 'Obtain a bearer token for scope: mcp at https://harbinger-health.com/oauth/token'
-    - 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"} to the mcp-oauth-server endpoint'
-    - 'Cross-check against GET /wp-json/wp-abilities/v1/abilities with the same credential'
+  - Register a client via the client-ID-metadata-document flow at https://harbinger-health.com/oauth/authorize
+  - 'Obtain a bearer token for scope: mcp at https://harbinger-health.com/oauth/token'
+  - POST {"jsonrpc":"2.0","id":1,"method":"tools/list"} to the mcp-oauth-server endpoint
+  - Cross-check against GET /wp-json/wp-abilities/v1/abilities with the same credential
 abilities_api:
   namespace: wp-abilities/v1
   routes:
-    - {path: /wp-abilities/v1, methods: [GET], anonymous_status: 401}
-    - {path: /wp-abilities/v1/abilities, methods: [GET], anonymous_status: 401}
-    - {path: '/wp-abilities/v1/abilities/{name}', methods: [GET], anonymous_status: 401}
-    - {path: '/wp-abilities/v1/abilities/{name}/run', methods: [GET, POST, PUT, PATCH, DELETE], anonymous_status: 401}
-    - {path: /wp-abilities/v1/categories, methods: [GET], anonymous_status: 401}
-    - {path: '/wp-abilities/v1/categories/{slug}', methods: [GET], anonymous_status: 401}
-  note: >-
-    The Abilities API run route accepts all five write methods, so the MCP surface is not
-    read-only by construction. Scope of effect is bounded by the WordPress site, not by any
-    clinical or laboratory system.
-caveat: >-
-  This is a site-content agent surface on a corporate marketing site. It is NOT a clinical,
-  diagnostic, genomic or patient-data interface, and nothing about Harbinger HX or RESOLVE is
-  reachable through it.
+  - path: /wp-abilities/v1
+    methods:
+    - GET
+    anonymous_status: 401
+  - path: /wp-abilities/v1/abilities
+    methods:
+    - GET
+    anonymous_status: 401
+  - path: /wp-abilities/v1/abilities/{name}
+    methods:
+    - GET
+    anonymous_status: 401
+  - path: /wp-abilities/v1/abilities/{name}/run
+    methods:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    anonymous_status: 401
+  - path: /wp-abilities/v1/categories
+    methods:
+    - GET
+    anonymous_status: 401
+  - path: /wp-abilities/v1/categories/{slug}
+    methods:
+    - GET
+    anonymous_status: 401
+  note: The Abilities API run route accepts all five write methods, so the MCP surface is not read-only
+    by construction. Scope of effect is bounded by the WordPress site, not by any clinical or laboratory
+    system.
+caveat: This is a site-content agent surface on a corporate marketing site. It is NOT a clinical, diagnostic,
+  genomic or patient-data interface, and nothing about Harbinger HX or RESOLVE is reachable through it.
+deployment:
+  mode: remote
+  endpoint: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Themes API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "themes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/themes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/themes",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to themes assigned one or more statuses."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/themes"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/themes/{stylesheet}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/themes/:stylesheet",
+            "params": [
+              {
+                "name": "stylesheet",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/themes/{stylesheet}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

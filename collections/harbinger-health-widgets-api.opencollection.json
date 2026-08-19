@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Widgets API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "widgets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/widgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "sidebar",
+                "value": "",
+                "type": "query",
+                "description": "The sidebar to return widgets for."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/widgets"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/widgets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /wp/v2/widgets"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/widgets/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/widgets/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/widgets/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /wp/v2/widgets/{id}"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/widgets/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "PUT /wp/v2/widgets/{id}"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/widgets/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "PATCH /wp/v2/widgets/{id}"
+        },
+        {
+          "info": {
+            "name": "DELETE /wp/v2/widgets/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/widgets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Whether to force removal of the widget, or move it to the inactive sidebar."
+              }
+            ]
+          },
+          "docs": "DELETE /wp/v2/widgets/{id}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

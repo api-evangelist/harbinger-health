@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Harbinger Health WordPress REST API (wp/v2) Global Styles API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "global-styles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /wp/v2/global-styles/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/global-styles/{id}"
+        },
+        {
+          "info": {
+            "name": "POST /wp/v2/global-styles/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "POST /wp/v2/global-styles/{id}"
+        },
+        {
+          "info": {
+            "name": "PUT /wp/v2/global-styles/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "PUT /wp/v2/global-styles/{id}"
+        },
+        {
+          "info": {
+            "name": "PATCH /wp/v2/global-styles/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "PATCH /wp/v2/global-styles/{id}"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/global-styles/{parent}/revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/:parent/revisions",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/global-styles/{parent}/revisions"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/global-styles/{parent}/revisions/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/:parent/revisions/:id",
+            "params": [
+              {
+                "name": "parent",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/global-styles/{parent}/revisions/{id}"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/global-styles/themes/{stylesheet}/variations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/themes/:stylesheet/variations",
+            "params": [
+              {
+                "name": "stylesheet",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/global-styles/themes/{stylesheet}/variations"
+        },
+        {
+          "info": {
+            "name": "GET /wp/v2/global-styles/themes/{stylesheet}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://harbinger-health.com/wp-json/wp/v2/global-styles/themes/:stylesheet",
+            "params": [
+              {
+                "name": "stylesheet",
+                "value": "",
+                "type": "path",
+                "description": "Path segment captured by the WordPress route regex."
+              }
+            ]
+          },
+          "docs": "GET /wp/v2/global-styles/themes/{stylesheet}"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
