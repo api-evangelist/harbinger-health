@@ -51,6 +51,20 @@ tags:
   - Diagnostics
   - Genomics
   - Artificial Intelligence
+  - Machine-Learning
+  - Life Sciences
+  - Clinical Laboratory
+  - Precision Medicine
+  - United States
+  - Company
+tags_raw:
+  - Health
+  - Healthcare
+  - Biotechnology
+  - Cancer Detection
+  - Diagnostics
+  - Genomics
+  - Artificial Intelligence
   - Machine Learning
   - Life Sciences
   - Clinical Laboratory
@@ -82,6 +96,11 @@ apis:
   humanURL: https://modelcontextprotocol.io/
   baseURL: https://harbinger-health.com/wp-json/mcp/mcp-oauth-server
   tags:
+  - MCP
+  - Agents
+  - Authentication
+  - WordPress
+  tags_raw:
   - MCP
   - Agents
   - OAuth
@@ -163,6 +182,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Blocks
+  tags_raw:
   - blocks
   properties:
   - type: OpenAPI
@@ -179,6 +200,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Categories
+  tags_raw:
   - categories
   properties:
   - type: OpenAPI
@@ -195,6 +218,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Comments
+  tags_raw:
   - comments
   properties:
   - type: OpenAPI
@@ -211,6 +236,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -275,6 +302,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Icons
+  tags_raw:
   - icons
   properties:
   - type: OpenAPI
@@ -291,6 +320,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Index
+  tags_raw:
   - index
   properties:
   - type: OpenAPI
@@ -307,6 +338,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Media
+  tags_raw:
   - media
   properties:
   - type: OpenAPI
@@ -323,6 +356,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Menu Items
+  tags_raw:
   - menu-items
   properties:
   - type: OpenAPI
@@ -355,6 +390,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Menus
+  tags_raw:
   - menus
   properties:
   - type: OpenAPI
@@ -371,6 +408,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Navigation
+  tags_raw:
   - navigation
   properties:
   - type: OpenAPI
@@ -387,6 +426,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Pages
+  tags_raw:
   - pages
   properties:
   - type: OpenAPI
@@ -419,6 +460,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Plugins
+  tags_raw:
   - plugins
   properties:
   - type: OpenAPI
@@ -435,6 +478,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Posts
+  tags_raw:
   - posts
   properties:
   - type: OpenAPI
@@ -451,6 +496,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Search
+  tags_raw:
   - search
   properties:
   - type: OpenAPI
@@ -467,6 +514,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Settings
+  tags_raw:
   - settings
   properties:
   - type: OpenAPI
@@ -499,6 +548,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Status
+  tags_raw:
   - statuses
   properties:
   - type: OpenAPI
@@ -515,6 +566,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Tags
+  tags_raw:
   - tags
   properties:
   - type: OpenAPI
@@ -563,6 +616,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Templates
+  tags_raw:
   - templates
   properties:
   - type: OpenAPI
@@ -579,6 +634,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Themes
+  tags_raw:
   - themes
   properties:
   - type: OpenAPI
@@ -595,6 +652,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Types
+  tags_raw:
   - types
   properties:
   - type: OpenAPI
@@ -611,6 +670,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
@@ -643,6 +704,8 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
   tags:
+  - Widgets
+  tags_raw:
   - widgets
   properties:
   - type: OpenAPI
@@ -658,7 +721,8 @@ apis:
   description: WordPress wp_pattern_category resource routes.
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://harbinger-health.com/wp-json
-  tags:
+  tags: []
+  tags_raw:
   - wp_pattern_category
   properties:
   - type: OpenAPI
