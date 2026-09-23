@@ -3,7 +3,7 @@ info:
   title: Harbinger Health WordPress REST API (wp/v2) Navigation API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Harbinger Health's website.
-  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH. Harbinger Health publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://harbinger-health.com/wp-json/ on 2026-08-04 (268 routes across 15 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the corporate website - it is NOT a clinical, laboratory, diagnostic, genomic or patient-data API, and no Harbinger HX or RESOLVE test data is reachable through it.
+  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH.
   contact:
     name: Harbinger Health
     url: https://harbinger-health.com/contact/
@@ -16,7 +16,7 @@ servers:
 - url: https://harbinger-health.com/wp-json
   description: Harbinger Health corporate site (WP Engine, fronted by Cloudflare)
 tags:
-- name: navigation
+- name: Navigation
   description: WordPress navigation resource routes.
 paths:
   /wp/v2/navigation:
@@ -24,7 +24,7 @@ paths:
       operationId: listNavigation
       summary: GET /wp/v2/navigation
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: context
         in: query
@@ -222,7 +222,7 @@ paths:
       operationId: createNavigation
       summary: POST /wp/v2/navigation
       tags:
-      - navigation
+      - Navigation
       requestBody:
         required: false
         content:
@@ -292,7 +292,7 @@ paths:
       operationId: getNavigationById
       summary: GET /wp/v2/navigation/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -345,7 +345,7 @@ paths:
       operationId: createNavigationById
       summary: POST /wp/v2/navigation/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -421,7 +421,7 @@ paths:
       operationId: replaceNavigationById
       summary: PUT /wp/v2/navigation/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -497,7 +497,7 @@ paths:
       operationId: updateNavigationById
       summary: PATCH /wp/v2/navigation/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -573,7 +573,7 @@ paths:
       operationId: deleteNavigationById
       summary: DELETE /wp/v2/navigation/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -617,7 +617,7 @@ paths:
       operationId: getNavigationByIdAutosaves
       summary: GET /wp/v2/navigation/{id}/autosaves
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -670,7 +670,7 @@ paths:
       operationId: createNavigationByIdAutosaves
       summary: POST /wp/v2/navigation/{id}/autosaves
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: id
         in: path
@@ -750,7 +750,7 @@ paths:
       operationId: getNavigationByParentAutosavesById
       summary: GET /wp/v2/navigation/{parent}/autosaves/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: parent
         in: path
@@ -804,7 +804,7 @@ paths:
       operationId: getNavigationByParentRevisions
       summary: GET /wp/v2/navigation/{parent}/revisions
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: parent
         in: path
@@ -923,7 +923,7 @@ paths:
       operationId: getNavigationByParentRevisionsById
       summary: GET /wp/v2/navigation/{parent}/revisions/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: parent
         in: path
@@ -976,7 +976,7 @@ paths:
       operationId: deleteNavigationByParentRevisionsById
       summary: DELETE /wp/v2/navigation/{parent}/revisions/{id}
       tags:
-      - navigation
+      - Navigation
       parameters:
       - name: parent
         in: path

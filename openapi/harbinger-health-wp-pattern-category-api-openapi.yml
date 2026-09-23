@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Harbinger Health WordPress REST API (wp/v2) Wp Pattern Category API
+  title: Harbinger Health WordPress REST API (wp/v2) Wp Pattern…
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Harbinger Health's website.
-  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH. Harbinger Health publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://harbinger-health.com/wp-json/ on 2026-08-04 (268 routes across 15 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the corporate website - it is NOT a clinical, laboratory, diagnostic, genomic or patient-data API, and no Harbinger HX or RESOLVE test data is reachable through it.
+  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH.
   contact:
     name: Harbinger Health
     url: https://harbinger-health.com/contact/
@@ -16,7 +16,7 @@ servers:
 - url: https://harbinger-health.com/wp-json
   description: Harbinger Health corporate site (WP Engine, fronted by Cloudflare)
 tags:
-- name: wp_pattern_category
+- name: Wp Pattern Category
   description: WordPress wp_pattern_category resource routes.
 paths:
   /wp/v2/wp_pattern_category:
@@ -24,7 +24,7 @@ paths:
       operationId: listWpPatternCategory
       summary: GET /wp/v2/wp_pattern_category
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       parameters:
       - name: context
         in: query
@@ -159,7 +159,7 @@ paths:
       operationId: createWpPatternCategory
       summary: POST /wp/v2/wp_pattern_category
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       requestBody:
         required: true
         content:
@@ -210,7 +210,7 @@ paths:
       operationId: getWpPatternCategoryById
       summary: GET /wp/v2/wp_pattern_category/{id}
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       parameters:
       - name: id
         in: path
@@ -257,7 +257,7 @@ paths:
       operationId: createWpPatternCategoryById
       summary: POST /wp/v2/wp_pattern_category/{id}
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       parameters:
       - name: id
         in: path
@@ -312,7 +312,7 @@ paths:
       operationId: replaceWpPatternCategoryById
       summary: PUT /wp/v2/wp_pattern_category/{id}
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       parameters:
       - name: id
         in: path
@@ -367,7 +367,7 @@ paths:
       operationId: updateWpPatternCategoryById
       summary: PATCH /wp/v2/wp_pattern_category/{id}
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       parameters:
       - name: id
         in: path
@@ -422,7 +422,7 @@ paths:
       operationId: deleteWpPatternCategoryById
       summary: DELETE /wp/v2/wp_pattern_category/{id}
       tags:
-      - wp_pattern_category
+      - Wp Pattern Category
       parameters:
       - name: id
         in: path

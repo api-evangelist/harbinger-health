@@ -3,7 +3,7 @@ info:
   title: Harbinger Health WordPress REST API (wp/v2) Templates API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Harbinger Health's website.
-  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH. Harbinger Health publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://harbinger-health.com/wp-json/ on 2026-08-04 (268 routes across 15 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the corporate website - it is NOT a clinical, laboratory, diagnostic, genomic or patient-data API, and no Harbinger HX or RESOLVE test data is reachable through it.
+  description: DERIVED, NOT PUBLISHED BY HARBINGER HEALTH.
   contact:
     name: Harbinger Health
     url: https://harbinger-health.com/contact/
@@ -16,7 +16,7 @@ servers:
 - url: https://harbinger-health.com/wp-json
   description: Harbinger Health corporate site (WP Engine, fronted by Cloudflare)
 tags:
-- name: templates
+- name: Templates
   description: WordPress templates resource routes.
 paths:
   /wp/v2/templates:
@@ -24,7 +24,7 @@ paths:
       operationId: listTemplates
       summary: GET /wp/v2/templates
       tags:
-      - templates
+      - Templates
       parameters:
       - name: context
         in: query
@@ -83,7 +83,7 @@ paths:
       operationId: createTemplates
       summary: POST /wp/v2/templates
       tags:
-      - templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -157,7 +157,7 @@ paths:
       operationId: getTemplatesById
       summary: GET /wp/v2/templates/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -204,7 +204,7 @@ paths:
       operationId: createTemplatesById
       summary: POST /wp/v2/templates/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -278,7 +278,7 @@ paths:
       operationId: replaceTemplatesById
       summary: PUT /wp/v2/templates/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -352,7 +352,7 @@ paths:
       operationId: updateTemplatesById
       summary: PATCH /wp/v2/templates/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -426,7 +426,7 @@ paths:
       operationId: deleteTemplatesById
       summary: DELETE /wp/v2/templates/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -470,7 +470,7 @@ paths:
       operationId: getTemplatesByIdAutosaves
       summary: GET /wp/v2/templates/{id}/autosaves
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -517,7 +517,7 @@ paths:
       operationId: createTemplatesByIdAutosaves
       summary: POST /wp/v2/templates/{id}/autosaves
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -592,7 +592,7 @@ paths:
       operationId: getTemplatesByParentAutosavesById
       summary: GET /wp/v2/templates/{parent}/autosaves/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: parent
         in: path
@@ -646,7 +646,7 @@ paths:
       operationId: getTemplatesByParentRevisions
       summary: GET /wp/v2/templates/{parent}/revisions
       tags:
-      - templates
+      - Templates
       parameters:
       - name: parent
         in: path
@@ -765,7 +765,7 @@ paths:
       operationId: getTemplatesByParentRevisionsById
       summary: GET /wp/v2/templates/{parent}/revisions/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: parent
         in: path
@@ -818,7 +818,7 @@ paths:
       operationId: deleteTemplatesByParentRevisionsById
       summary: DELETE /wp/v2/templates/{parent}/revisions/{id}
       tags:
-      - templates
+      - Templates
       parameters:
       - name: parent
         in: path
@@ -868,7 +868,7 @@ paths:
       operationId: listTemplatesLookup
       summary: GET /wp/v2/templates/lookup
       tags:
-      - templates
+      - Templates
       parameters:
       - name: slug
         in: query
