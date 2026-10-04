@@ -1,35 +1,32 @@
-# Kin Score artifact — harbinger-health — 2026-09-01T063623
+# Kin Score artifact — harbinger-health — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: harbinger-health
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
-  composite: 32.2
-  band: thin
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 24.3
+  band: emerging
   facets:
-    discoverability: 68.5
-    contract_quality: 19.0
-    governance: 18.2
-    operational_transparency: 0.0
-    developer_ergonomics: 20.8
-    commercial_clarity: 28.9
+    discoverability: 60.0
+    contract_quality: 6.5
     contract_governance: 18.2
+    operational_transparency: 0.0
+    developer_ergonomics: 30.4
     access_clarity: 28.9
   agent_readiness:
-    score: 46.9
-    band: agent-ready
-    band_gated_from: agent-native
+    score: 21.2
+    band: agent-aware
     dimensions:
-      spec_presence: true
+      spec_presence: false
       agentic_access: derived
       reversibility_documented: false
-      mcp_server: verified
+      mcp_server: platform
       auth_clarity: served
       idempotency: false
-      error_semantics: verified
-      openapi_examples: partial
+      error_semantics: derived
+      openapi_examples: documented
       rate_limit_signal: false
       event_surface_described: false
       agent_skills: derived
@@ -45,15 +42,10 @@ kin_score:
     applies: true
     regime: Health
     regime_id: health
-    score: 75.0
+    score: 34.6
     matched_via: tags
   provenance:
-    mcp: first-party
+    mcp: site-plugin
     skills: derived
     agentic_access: derived
     conformance: first-party
-    contracts:
-      total: 36
-      derived: 36
-      coverage: 100.0
-      callable: 100.0
