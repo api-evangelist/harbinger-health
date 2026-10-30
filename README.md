@@ -64,41 +64,157 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Harbinger Health is a Cambridge, Massachusetts biotechnology company founded out of Flagship
-Pioneering's Flagship Labs in 2018, building blood-based early cancer detection on the Harbinger HX
-platform — cell-free DNA methylation assay chemistry tuned for low tumour fraction, paired with
-machine learning operating under biologically informed constraints — and its clinical application,
-RESOLVE. Testing runs in a CLIA-certified, CAP-accredited high-complexity laboratory.
+Harbinger Health is a Cambridge, Massachusetts biotechnology company founded out of Flagship Pioneering's Flagship Labs in 2018 that is building blood-based early cancer detection on the premise that the earliest phases of oncogenesis are marked by the reactivation of core developmental programs. Its proprietary Harbinger HX platform pairs cell-free DNA methylation assay chemistry tuned for low tumour fraction with machine learning operating under biologically informed constraints, and supports cancer signal detection, tumour content estimation and tissue-of-origin inference. RESOLVE, the company's clinical application of that platform, is positioned to generate clarity in the uncertain window between suspicion of cancer and diagnosis, across cancer types and clinical contexts, and is run out of a CLIA-certified and CAP-accredited high-complexity laboratory. The company raised a 100 million dollar round to expand its blood-based detection suite and is led by CEO Ajit Singh with Chief Innovation Officer Tony Shuber, a co-founder of Exact Sciences. Harbinger Health's API posture is minimal and clinical rather than commercial: there is no developer portal, no published documentation, no OpenAPI, no SDKs, no pricing and no self-serve API access, and the developer., docs., api., portal., status. and trust. subdomains do not resolve. What it does publish is unusual for a company with no developer programme - the corporate site serves a live, anonymously readable WordPress REST API (268 routes across 15 namespaces), an RFC 8414 OAuth 2.1 authorization-server metadata document, an RFC 9728 protected-resource document, and a real Model Context Protocol server namespace gated behind an mcp scope, alongside the WordPress Abilities API. That makes Harbinger Health machine-discoverable at the agent layer while none of its clinical, laboratory or diagnostic capability is exposed programmatically to third parties.
 
-- Website: https://harbinger-health.com/
-- RESOLVE: https://harbinger-health.com/resolve/
-- Platform technology: https://harbinger-health.com/platform-technology/
-- News and insights: https://harbinger-health.com/news-insights/
+**Areas:** Health · Healthcare · Biotechnology · Cancer Detection · Diagnostics · Genomics · Artificial Intelligence · Machine Learning · Life Sciences · Clinical Laboratory · Precision Medicine · United States
 
-## API posture (profiled 2026-08-04)
+## Harbinger Health on APIs.io
 
-**There is no developer API.** No developer portal, no documentation, no OpenAPI published by the
-company, no SDKs, no CLI, no pricing, no sign-up, no status page, no changelog, no bug-bounty or
-security.txt. The `developer.`, `docs.`, `api.`, `portal.`, `status.` and `trust.` subdomains do not
-resolve. No FHIR, HL7 or GA4GH surface exists — nothing about specimens, assays, results, orders or
-patients is publicly reachable, and nothing in this repository describes RESOLVE or Harbinger HX
-data.
+Everything profiled for Harbinger Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/harbinger-health/](https://apis.io/providers/harbinger-health/)** — or go straight to one of the APIs or properties below.
 
-What the company *does* serve from its own host is unusual for a company with no developer
-programme, and is what this profile captures:
+### APIs (2)
 
-| Surface | Status |
+- [Harbinger Health MCP Server](https://apis.io/apis/harbinger-health/harbinger-health-mcp-server/) — A live Model Context Protocol server namespace published on Harbinger Health's own host at https://harbinger-health.com/wp-json/mcp/, exposing two servers -…
+- [Harbinger Health Website (WordPress REST)](https://apis.io/apis/harbinger-health/harbinger-health-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Harbinger Health website at harbinger-health.com: the route index of the site's content management system,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [harbinger-health-mcp.yml](https://apis.io/servers/harbinger-health/harbinger-health-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Harbinger Health Agentic Access](https://apis.io/agentic-access/harbinger-health/harbinger-health-agentic-access/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Harbinger Health Error 400](https://apis.io/examples/harbinger-health/harbinger-health-error-400/)
+- [Harbinger Health Error 401](https://apis.io/examples/harbinger-health/harbinger-health-error-401/)
+- [Harbinger Health Error 404](https://apis.io/examples/harbinger-health/harbinger-health-error-404/)
+- [Harbinger Health Error No Route](https://apis.io/examples/harbinger-health/harbinger-health-error-no-route/)
+- [Harbinger Health Types Response](https://apis.io/examples/harbinger-health/harbinger-health-types-response/)
+
+#### Collections (37)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-block-directory-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-block-patterns-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-block-renderer-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-block-types-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-blocks-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-categories-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-comments-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-events-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-font-collections-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-font-families-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-global-styles-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-icons-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-index-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-media-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-menu-items-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-menu-locations-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-menus-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-navigation-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-pages-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-pattern-directory-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-plugins-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-posts-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-search-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-settings-api/)
+- [Moved to /providers/harbinger-health/](https://apis.io/collections/harbinger-health/open-harbinger-health-sidebars-api/)
+- …and 12 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Harbinger Health Wordpress Wp V2 Overlay](https://apis.io/overlays/harbinger-health/harbinger-health-wordpress-wp-v2-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Harbinger Health Authentication](https://apis.io/security/harbinger-health/harbinger-health-authentication/)
+- [Harbinger Health Domain Security](https://apis.io/security/harbinger-health/harbinger-health-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Harbinger Health Scopes](https://apis.io/scopes/harbinger-health/harbinger-health-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://harbinger-health.com/)
+- [Support](https://harbinger-health.com/contact/)
+- [Blog](https://harbinger-health.com/news-insights/)
+- [Compliance](https://harbinger-health.com/resolve/)
+- [Terms of service](https://harbinger-health.com/terms-of-use/)
+- [Privacy policy](https://harbinger-health.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 24.3** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| `GET /wp-json/` — WordPress route discovery, 268 routes / 15 namespaces | 200, anonymous |
-| `wp/v2` content API — posts, pages, an `events` custom post type, media, search | 200, anonymous |
-| `/wp-json/mcp/mcp-oauth-server` — Model Context Protocol server | 401 `mcp_unauthorized` |
-| `/wp-json/mcp/mcp-adapter-default-server` — second MCP server | 401 `rest_forbidden` |
-| `/wp-json/wp-abilities/v1/abilities` — WordPress Abilities API (probable tool source) | 401 |
-| `/.well-known/oauth-authorization-server` — RFC 8414, OAuth 2.1 + PKCE S256, scope `mcp` | 200 |
-| `/.well-known/oauth-protected-resource` — RFC 9728, names the MCP server | 200 |
-| `/.well-known/security.txt`, `/openid-configuration`, `/api-catalog`, `/agent-card.json`, `/agent.json`, `/llms.txt`, `/openapi.json`, `/graphql` | 404 |
+| Discoverability | 60.0 |
+| Contract quality | 6.5 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 28.9 |
 
-The MCP tool catalogue is **auth-gated and has not been observed**, so no tool names, descriptions or
-input schemas are recorded anywhere in this repository. The OpenAPI in `openapi/` was **derived by
-API Evangelist** from the live WordPress route-discovery document — it is not a Harbinger Health
-artifact, and it describes a corporate-website content API.
+**Agent readiness 21.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.6** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/harbinger-health/](https://apis.io/providers/harbinger-health/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Harbinger Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/harbinger-health/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
